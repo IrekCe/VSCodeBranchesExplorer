@@ -8,7 +8,10 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Vyer-eco/EcoCloud.git"
+        "url": "https://github.com/IrekCe/VSCodeBranchesExplorer.git"
+    },
+    "bugs": {
+        "url": "https://github.com/IrekCe/VSCodeBranchesExplorer/issues"
     },
     "engines": {
         "vscode": "^1.90.0"
