@@ -1,4 +1,20 @@
-# Branches Explorer (VS Code Extension)
+# Git Branches Explorer
+
+[![VS Code Marketplace](https://img.shields.io/badge/VS%20Code-Marketplace-blue?logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=irek-cicherski.git-branches-explorer)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![GitHub repo](https://img.shields.io/badge/GitHub-VSCodeBranchesExplorer-blue?logo=github)](https://github.com/IrekCe/VSCodeBranchesExplorer)
+
+## Installation
+
+Install from VS Code Extensions (search for "Git Branches Explorer") or:
+
+```bash
+code --install-extension irek-cicherski.git-branches-explorer
+```
+
+[View on VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=irek-cicherski.git-branches-explorer)
+
+---
 
 Three sections in the **Source Control** view:
 
