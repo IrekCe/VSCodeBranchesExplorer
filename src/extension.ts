@@ -568,7 +568,7 @@ async function withProgress<T>(title: string, task: () => Promise<T>): Promise<T
  */
 class CurrentBranchDecorationProvider implements vscode.FileDecorationProvider {
     provideFileDecoration(uri: vscode.Uri): vscode.FileDecoration | undefined {
-        if (uri.scheme !== 'ecocloud-branch') { return undefined; }
+        if (uri.scheme !== 'git-branch') { return undefined; }
         if (uri.authority !== 'current') { return undefined; }
         return {
             badge: '●',
