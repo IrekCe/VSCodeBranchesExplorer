@@ -2,7 +2,7 @@
     "name": "git-branches-explorer",
     "displayName": "Git Branches Explorer",
     "description": "Adds Local Branches, Remote Branches and Tags sections to the Source Control view.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "irek-cicherski",
     "icon": "media/icon.png",
     "license": "MIT",
