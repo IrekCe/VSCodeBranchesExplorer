@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <style>
+    .bg{fill:#1e1e1e}
+    .header{fill:#181818}
+    .hdr-text{fill:#cccccc;font-size:11px;font-weight:600;letter-spacing:.5px}
+    .row-text{fill:#cccccc}
+    .muted{fill:#858585;font-size:11px}
+    .accent{fill:#3794ff}
+    .danger{fill:#f14c4c}
+    .row-hover{fill:#2a2d2e}
+    .icon-btn{fill:#858585}
+    .chev{stroke:#cccccc;stroke-width:1.4;fill:none}
+    .group{fill:#cccccc;font-weight:600}
+  </style>
+
+  <rect class="bg" width="520" height="360"/>
+
+  <rect class="header" x="0" y="0" width="520" height="22"/>
+  <polyline class="chev" points="8,9 12,13 16,9"/>
+  <text class="hdr-text" x="22" y="15">REMOTE BRANCHES</text>
+  <g transform="translate(450,4)">
+    <text class="icon-btn" x="0"  y="11">⤓</text>
+    <text class="icon-btn" x="20" y="11">▽</text>
+    <text class="icon-btn" x="40" y="11">↻</text>
+  </g>
+
+  <!-- Group: origin -->
+  <polyline class="chev" points="10,38 14,42 18,38"/>
+  <text x="26" y="45" class="group">☁ origin</text>
+  <text x="100" y="45" class="muted">5 branches</text>
+  <g transform="translate(490,34)">
+    <text class="icon-btn" x="0" y="11">⤓</text>
+  </g>
+
+  <text x="40" y="69" class="accent">⎇</text>
+  <text x="58" y="69" class="row-text">main</text>
+  <text x="100" y="69" class="muted">a3f12c8</text>
+
+  <text x="40" y="93" class="accent">⎇</text>
+  <text x="58" y="93" class="row-text">feature/asset-history</text>
+  <text x="206" y="93" class="muted">9bc1d4e</text>
+
+  <!-- hovered -->
+  <rect class="row-hover" x="0" y="102" width="520" height="22"/>
+  <text x="40" y="117" class="accent">⎇</text>
+  <text x="58" y="117" class="row-text">fix/sidebar-padding</text>
+  <text x="200" y="117" class="muted">dd4e887</text>
+  <g transform="translate(460,106)">
+    <text class="icon-btn" x="0"  y="11">✓</text>
+    <text class="danger"   x="22" y="11">🗑</text>
+  </g>
+
+  <text x="40" y="141" class="accent">⎇</text>
+  <text x="58" y="141" class="row-text">refactor/global-usings</text>
+  <text x="216" y="141" class="muted">5520ee1</text>
+
+  <text x="40" y="165" class="accent">⎇</text>
+  <text x="58" y="165" class="row-text">vscode-extensions</text>
+  <text x="186" y="165" class="muted">7c0aa92</text>
+
+  <!-- Group: upstream -->
+  <polyline class="chev" points="10,182 14,186 18,182"/>
+  <text x="26" y="189" class="group">☁ upstream</text>
+  <text x="120" y="189" class="muted">2 branches</text>
+
+  <text x="40" y="213" class="accent">⎇</text>
+  <text x="58" y="213" class="row-text">main</text>
+  <text x="100" y="213" class="muted">88ee010</text>
+
+  <text x="40" y="237" class="accent">⎇</text>
+  <text x="58" y="237" class="row-text">release/2026.04</text>
+  <text x="184" y="237" class="muted">cc73441</text>
+</svg>

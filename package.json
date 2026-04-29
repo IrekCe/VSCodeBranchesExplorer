@@ -1,0 +1,564 @@
+{
+    "name": "git-branches-explorer",
+    "displayName": "Git Branches Explorer",
+    "description": "Adds Local Branches, Remote Branches and Tags sections to the Source Control view.",
+    "version": "0.4.10",
+    "publisher": "irek-cicherski",
+    "icon": "media/icon.png",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Vyer-eco/EcoCloud.git"
+    },
+    "engines": {
+        "vscode": "^1.90.0"
+    },
+    "categories": [
+        "SCM Providers"
+    ],
+    "extensionDependencies": [
+        "vscode.git"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "colors": [
+            {
+                "id": "gitBranchesExplorer.currentBranchForeground",
+                "description": "Foreground color for the currently checked-out branch.",
+                "defaults": {
+                    "dark": "#5b8def",
+                    "light": "#1f3a93",
+                    "highContrast": "#7aa6ff",
+                    "highContrastLight": "#1f3a93"
+                }
+            }
+        ],
+        "views": {
+            "scm": [
+                {
+                    "id": "gitBranchesExplorer.local",
+                    "name": "Local Branches",
+                    "icon": "$(git-branch)",
+                    "contextualTitle": "Local Branches",
+                    "visibility": "visible",
+                    "initialSize": 2
+                },
+                {
+                    "id": "gitBranchesExplorer.remote",
+                    "name": "Remote Branches",
+                    "icon": "$(cloud)",
+                    "contextualTitle": "Remote Branches",
+                    "visibility": "visible",
+                    "initialSize": 2
+                },
+                {
+                    "id": "gitBranchesExplorer.tags",
+                    "name": "Tags",
+                    "icon": "$(tag)",
+                    "contextualTitle": "Tags",
+                    "visibility": "collapsed",
+                    "initialSize": 1
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "gitBranchesExplorer.refresh",
+                "title": "Refresh",
+                "icon": "$(refresh)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.fetch",
+                "title": "Fetch",
+                "icon": "$(cloud-download)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.pull",
+                "title": "Pull",
+                "icon": "$(arrow-down)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.filterLocal",
+                "title": "Filter Local Branches…",
+                "icon": "$(search)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.filterRemote",
+                "title": "Filter Remote Branches…",
+                "icon": "$(search)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.filterTags",
+                "title": "Filter Tags…",
+                "icon": "$(search)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.clearFilter",
+                "title": "Clear All Filters",
+                "icon": "$(clear-all)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.quickSwitch",
+                "title": "Quick Switch (Branches, Remotes & Tags)…",
+                "icon": "$(arrow-swap)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.checkout",
+                "title": "Checkout",
+                "icon": "$(check)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.checkoutRemote",
+                "title": "Checkout (Create Local Tracking Branch)",
+                "icon": "$(check)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.createBranch",
+                "title": "Create Branch…",
+                "icon": "$(add)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.renameBranch",
+                "title": "Rename Branch…",
+                "icon": "$(edit)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.deleteBranch",
+                "title": "Delete Branch",
+                "icon": "$(trash)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.merge",
+                "title": "Merge into Current Branch",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.rebase",
+                "title": "Rebase Current Branch onto…",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.cherryPick",
+                "title": "Cherry-pick…",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.push",
+                "title": "Push",
+                "icon": "$(arrow-up)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.publish",
+                "title": "Publish (Push & Set Upstream)",
+                "icon": "$(cloud-upload)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.deleteRemoteBranch",
+                "title": "Delete on Remote",
+                "icon": "$(trash)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.createTag",
+                "title": "Create Tag…",
+                "icon": "$(add)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.pushTag",
+                "title": "Push Tag",
+                "icon": "$(arrow-up)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.deleteTag",
+                "title": "Delete Tag (Local)",
+                "icon": "$(trash)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.deleteRemoteTag",
+                "title": "Delete Tag (Remote)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.copyName",
+                "title": "Copy Name",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.local.viewAsTree",
+                "title": "View as Tree",
+                "icon": "$(list-tree)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.local.viewAsList",
+                "title": "View as List",
+                "icon": "$(list-flat)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.remote.viewAsTree",
+                "title": "View as Tree",
+                "icon": "$(list-tree)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.remote.viewAsList",
+                "title": "View as List",
+                "icon": "$(list-flat)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.tags.viewAsTree",
+                "title": "View as Tree",
+                "icon": "$(list-tree)",
+                "category": "Branches Explorer"
+            },
+            {
+                "command": "gitBranchesExplorer.tags.viewAsList",
+                "title": "View as List",
+                "icon": "$(list-flat)",
+                "category": "Branches Explorer"
+            }
+        ],
+        "menus": {
+            "view/title": [
+                {
+                    "command": "gitBranchesExplorer.createBranch",
+                    "when": "view == gitBranchesExplorer.local",
+                    "group": "navigation@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.quickSwitch",
+                    "when": "view == gitBranchesExplorer.local",
+                    "group": "navigation@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.filterLocal",
+                    "when": "view == gitBranchesExplorer.local",
+                    "group": "navigation@3"
+                },
+                {
+                    "command": "gitBranchesExplorer.refresh",
+                    "when": "view == gitBranchesExplorer.local",
+                    "group": "navigation@4"
+                },
+                {
+                    "command": "gitBranchesExplorer.local.viewAsList",
+                    "when": "view == gitBranchesExplorer.local && gitBranchesExplorer.mode.local == tree",
+                    "group": "navigation@5"
+                },
+                {
+                    "command": "gitBranchesExplorer.local.viewAsTree",
+                    "when": "view == gitBranchesExplorer.local && gitBranchesExplorer.mode.local == list",
+                    "group": "navigation@5"
+                },
+                {
+                    "command": "gitBranchesExplorer.fetch",
+                    "when": "view == gitBranchesExplorer.remote",
+                    "group": "navigation@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.filterRemote",
+                    "when": "view == gitBranchesExplorer.remote",
+                    "group": "navigation@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.refresh",
+                    "when": "view == gitBranchesExplorer.remote",
+                    "group": "navigation@3"
+                },
+                {
+                    "command": "gitBranchesExplorer.remote.viewAsList",
+                    "when": "view == gitBranchesExplorer.remote && gitBranchesExplorer.mode.remote == tree",
+                    "group": "navigation@4"
+                },
+                {
+                    "command": "gitBranchesExplorer.remote.viewAsTree",
+                    "when": "view == gitBranchesExplorer.remote && gitBranchesExplorer.mode.remote == list",
+                    "group": "navigation@4"
+                },
+                {
+                    "command": "gitBranchesExplorer.createTag",
+                    "when": "view == gitBranchesExplorer.tags",
+                    "group": "navigation@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.filterTags",
+                    "when": "view == gitBranchesExplorer.tags",
+                    "group": "navigation@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.refresh",
+                    "when": "view == gitBranchesExplorer.tags",
+                    "group": "navigation@3"
+                },
+                {
+                    "command": "gitBranchesExplorer.tags.viewAsList",
+                    "when": "view == gitBranchesExplorer.tags && gitBranchesExplorer.mode.tag == tree",
+                    "group": "navigation@4"
+                },
+                {
+                    "command": "gitBranchesExplorer.tags.viewAsTree",
+                    "when": "view == gitBranchesExplorer.tags && gitBranchesExplorer.mode.tag == list",
+                    "group": "navigation@4"
+                }
+            ],
+            "view/item/context": [
+                {
+                    "command": "gitBranchesExplorer.checkout",
+                    "when": "view == gitBranchesExplorer.local && viewItem == localBranch",
+                    "group": "inline@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.deleteBranch",
+                    "when": "view == gitBranchesExplorer.local && viewItem == localBranch",
+                    "group": "inline@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.push",
+                    "when": "view == gitBranchesExplorer.local && viewItem == localBranch.current",
+                    "group": "inline@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.pull",
+                    "when": "view == gitBranchesExplorer.local && viewItem == localBranch.current",
+                    "group": "inline@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.checkout",
+                    "when": "view == gitBranchesExplorer.local && viewItem == localBranch",
+                    "group": "1_checkout@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.merge",
+                    "when": "view == gitBranchesExplorer.local && viewItem == localBranch",
+                    "group": "2_integrate@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.rebase",
+                    "when": "view == gitBranchesExplorer.local && viewItem == localBranch",
+                    "group": "2_integrate@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.cherryPick",
+                    "when": "view == gitBranchesExplorer.local && viewItem == localBranch",
+                    "group": "2_integrate@3"
+                },
+                {
+                    "command": "gitBranchesExplorer.push",
+                    "when": "view == gitBranchesExplorer.local && viewItem == localBranch.current",
+                    "group": "3_remote@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.publish",
+                    "when": "view == gitBranchesExplorer.local",
+                    "group": "3_remote@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.pull",
+                    "when": "view == gitBranchesExplorer.local && viewItem == localBranch.current",
+                    "group": "3_remote@3"
+                },
+                {
+                    "command": "gitBranchesExplorer.renameBranch",
+                    "when": "view == gitBranchesExplorer.local",
+                    "group": "5_modify@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.deleteBranch",
+                    "when": "view == gitBranchesExplorer.local && viewItem == localBranch",
+                    "group": "5_modify@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.copyName",
+                    "when": "view == gitBranchesExplorer.local",
+                    "group": "9_copy"
+                },
+                {
+                    "command": "gitBranchesExplorer.fetch",
+                    "when": "view == gitBranchesExplorer.remote && viewItem == remoteGroup",
+                    "group": "inline@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.fetch",
+                    "when": "view == gitBranchesExplorer.remote && viewItem == remoteGroup",
+                    "group": "1_actions@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.checkoutRemote",
+                    "when": "view == gitBranchesExplorer.remote && viewItem == remoteBranch",
+                    "group": "inline@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.deleteRemoteBranch",
+                    "when": "view == gitBranchesExplorer.remote && viewItem == remoteBranch",
+                    "group": "inline@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.checkoutRemote",
+                    "when": "view == gitBranchesExplorer.remote && viewItem == remoteBranch",
+                    "group": "1_checkout@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.merge",
+                    "when": "view == gitBranchesExplorer.remote && viewItem == remoteBranch",
+                    "group": "2_integrate@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.rebase",
+                    "when": "view == gitBranchesExplorer.remote && viewItem == remoteBranch",
+                    "group": "2_integrate@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.cherryPick",
+                    "when": "view == gitBranchesExplorer.remote && viewItem == remoteBranch",
+                    "group": "2_integrate@3"
+                },
+                {
+                    "command": "gitBranchesExplorer.deleteRemoteBranch",
+                    "when": "view == gitBranchesExplorer.remote && viewItem == remoteBranch",
+                    "group": "5_modify@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.copyName",
+                    "when": "view == gitBranchesExplorer.remote && viewItem == remoteBranch",
+                    "group": "9_copy"
+                },
+                {
+                    "command": "gitBranchesExplorer.checkout",
+                    "when": "view == gitBranchesExplorer.tags && viewItem == tag",
+                    "group": "inline@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.deleteTag",
+                    "when": "view == gitBranchesExplorer.tags && viewItem == tag",
+                    "group": "inline@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.checkout",
+                    "when": "view == gitBranchesExplorer.tags && viewItem == tag",
+                    "group": "1_checkout@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.cherryPick",
+                    "when": "view == gitBranchesExplorer.tags && viewItem == tag",
+                    "group": "2_integrate@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.pushTag",
+                    "when": "view == gitBranchesExplorer.tags && viewItem == tag",
+                    "group": "3_remote@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.deleteTag",
+                    "when": "view == gitBranchesExplorer.tags && viewItem == tag",
+                    "group": "5_modify@1"
+                },
+                {
+                    "command": "gitBranchesExplorer.deleteRemoteTag",
+                    "when": "view == gitBranchesExplorer.tags && viewItem == tag",
+                    "group": "5_modify@2"
+                },
+                {
+                    "command": "gitBranchesExplorer.copyName",
+                    "when": "view == gitBranchesExplorer.tags && viewItem == tag",
+                    "group": "9_copy"
+                }
+            ],
+            "commandPalette": [
+                {
+                    "command": "gitBranchesExplorer.checkout",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.checkoutRemote",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.renameBranch",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.deleteBranch",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.merge",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.rebase",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.push",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.publish",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.deleteRemoteBranch",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.pushTag",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.deleteTag",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.deleteRemoteTag",
+                    "when": "false"
+                },
+                {
+                    "command": "gitBranchesExplorer.copyName",
+                    "when": "false"
+                }
+            ]
+        },
+        "keybindings": [
+            {
+                "command": "gitBranchesExplorer.quickSwitch",
+                "key": "ctrl+alt+b",
+                "mac": "cmd+alt+b"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run build",
+        "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node18",
+        "watch": "npm run build -- --watch",
+        "compile": "tsc -p ./ --noEmit"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "@types/vscode": "^1.90.0",
+        "esbuild": "^0.21.0",
+        "typescript": "^5.4.0"
+    }
+}

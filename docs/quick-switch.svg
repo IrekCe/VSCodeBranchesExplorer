@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <style>
+    .bg{fill:#1e1e1e}
+    .qp{fill:#252526;stroke:#454545;stroke-width:1}
+    .input{fill:#3c3c3c;stroke:#3794ff;stroke-width:1}
+    .placeholder{fill:#a6a6a6}
+    .row-text{fill:#cccccc}
+    .muted{fill:#858585;font-size:11px}
+    .accent{fill:#3794ff}
+    .ok{fill:#89d185}
+    .tag{fill:#dcdcaa}
+    .sep{stroke:#3a3a3a;stroke-width:1}
+    .sep-text{fill:#9d9d9d;font-size:11px;font-weight:600;letter-spacing:.4px}
+    .row-hover{fill:#04395e}
+  </style>
+
+  <rect class="bg" width="640" height="460"/>
+
+  <!-- Quick Pick container -->
+  <rect class="qp" x="100" y="40" width="440" height="400" rx="4"/>
+
+  <!-- Search input -->
+  <rect class="input" x="112" y="52" width="416" height="30" rx="2"/>
+  <text x="124" y="72" class="placeholder">Select a branch, remote branch or tag to checkout</text>
+
+  <!-- Section: Local Branches -->
+  <line class="sep" x1="112" y1="100" x2="528" y2="100"/>
+  <text x="120" y="115" class="sep-text">LOCAL BRANCHES</text>
+
+  <rect class="row-hover" x="112" y="124" width="416" height="22"/>
+  <text x="124" y="139" class="ok">✓</text>
+  <text x="142" y="139" class="row-text">main</text>
+  <text x="184" y="139" class="muted">a3f12c8 • current</text>
+
+  <text x="124" y="161" class="accent">⎇</text>
+  <text x="142" y="161" class="row-text">feature/asset-history</text>
+  <text x="288" y="161" class="muted">9bc1d4e</text>
+
+  <text x="124" y="183" class="accent">⎇</text>
+  <text x="142" y="183" class="row-text">fix/sidebar-padding</text>
+  <text x="284" y="183" class="muted">dd4e887</text>
+
+  <text x="124" y="205" class="accent">⎇</text>
+  <text x="142" y="205" class="row-text">vscode-extensions</text>
+  <text x="270" y="205" class="muted">7c0aa92</text>
+
+  <!-- Section: Remote Branches -->
+  <line class="sep" x1="112" y1="220" x2="528" y2="220"/>
+  <text x="120" y="235" class="sep-text">REMOTE BRANCHES</text>
+
+  <text x="124" y="259" class="accent">☁</text>
+  <text x="142" y="259" class="row-text">origin/main</text>
+  <text x="226" y="259" class="muted">a3f12c8</text>
+
+  <text x="124" y="281" class="accent">☁</text>
+  <text x="142" y="281" class="row-text">origin/release/2026.05</text>
+  <text x="304" y="281" class="muted">b1d99fa</text>
+
+  <text x="124" y="303" class="accent">☁</text>
+  <text x="142" y="303" class="row-text">upstream/main</text>
+  <text x="248" y="303" class="muted">88ee010</text>
+
+  <!-- Section: Tags -->
+  <line class="sep" x1="112" y1="318" x2="528" y2="318"/>
+  <text x="120" y="333" class="sep-text">TAGS</text>
+
+  <text x="124" y="357" class="tag">⌂</text>
+  <text x="142" y="357" class="row-text">v2026.04.0</text>
+  <text x="222" y="357" class="muted">a3f12c8</text>
+
+  <text x="124" y="379" class="tag">⌂</text>
+  <text x="142" y="379" class="row-text">v2026.03.2</text>
+  <text x="222" y="379" class="muted">88ee010</text>
+
+  <text x="124" y="401" class="tag">⌂</text>
+  <text x="142" y="401" class="row-text">v2026.03.1</text>
+  <text x="222" y="401" class="muted">cc73441</text>
+
+  <!-- Footer hint -->
+  <text x="120" y="430" class="muted">Default keybinding: Ctrl+Alt+B  (Cmd+Alt+B on macOS)</text>
+</svg>
