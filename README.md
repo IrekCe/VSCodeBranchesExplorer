@@ -8,6 +8,33 @@ Three sections in the **Source Control** view:
 
 Multi-repo workspaces show repositories as parent nodes.
 
+## Features
+
+### Overview
+![Overview](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/overview.png)
+
+Three organized sections in the Source Control view with full branch/tag management.
+
+### Local Branches
+![Local Branches](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/local-branches.png)
+
+List all local branches with current branch indicator (✓). Inline action icons for checkout, delete, push, pull.
+
+### Remote Branches
+![Remote Branches](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/remote-branches.png)
+
+Browse remote branches grouped by remote name. One-click checkout and merge.
+
+### Quick Switch
+![Quick Switch](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/quick-switch.png)
+
+Quick Pick for fast switching between local, remote branches and tags. Default keybinding: `Ctrl+Alt+B` (`Cmd+Alt+B` on macOS).
+
+### Tags
+![Tags](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/tags.png)
+
+Manage tags with push, delete (local/remote), and checkout.
+
 ## Highlights
 
 - **Inline action icons** on hover (checkout / delete / push / pull) per ref.
