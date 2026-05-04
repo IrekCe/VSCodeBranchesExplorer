@@ -163,14 +163,15 @@ class RefsTreeProvider implements vscode.TreeDataProvider<Node>, vscode.Disposab
 
     private stateSig(r: Repository): string {
         const head = r.state.HEAD;
-        // Note: r.state.refs may be empty (newer vscode.git uses async getRefs), so use
-        // HEAD identity + ahead/behind + remotes count as a stable signature.
+        // On newer vscode.git state.refs is always [] (deprecated); only use it as
+        // a signal on older builds where getRefs() doesn't exist yet.
+        const refsLen = typeof (r as any).getRefs === 'function' ? -1 : r.state.refs.length;
         return [
             head?.name ?? '',
             head?.commit ?? '',
             head?.ahead ?? -1,
             head?.behind ?? -1,
-            r.state.refs.length,
+            refsLen,
             r.state.remotes.length,
         ].join('|');
     }
