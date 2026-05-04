@@ -689,6 +689,32 @@ export async function activate(context: vscode.ExtensionContext) {
 
         // ----- Branch operations -----
 
+        vscode.commands.registerCommand('gitBranchesExplorer.openRemoteBranches', async () => {
+            const repo = await pickRepository(git);
+            if (!repo) { return; }
+            const remotes = repo.state.remotes;
+            if (remotes.length === 0) {
+                vscode.window.showErrorMessage('No remotes configured.');
+                return;
+            }
+            // Use first remote (usually 'origin')
+            const remote = remotes[0];
+            const url = remote.fetchUrl || remote.pushUrl;
+            if (!url) {
+                vscode.window.showErrorMessage('No URL found for remote.');
+                return;
+            }
+            // Parse GitHub URL: git@github.com:owner/repo.git or https://github.com/owner/repo.git
+            const match = url.match(/(?:git@github\.com:|https:\/\/github\.com\/)([^/]+)\/(.+?)(?:\.git)?$/);
+            if (!match) {
+                vscode.window.showErrorMessage('Could not parse GitHub URL.');
+                return;
+            }
+            const [, owner, repo_name] = match;
+            const branchesUrl = `https://github.com/${owner}/${repo_name}/branches/all`;
+            await vscode.env.openExternal(vscode.Uri.parse(branchesUrl));
+        }),
+
         vscode.commands.registerCommand('gitBranchesExplorer.checkout', async (item: RefItem) => {
             if (!item?.ref?.name) { return; }
             try { await item.repo.checkout(item.ref.name); }
@@ -785,27 +811,11 @@ export async function activate(context: vscode.ExtensionContext) {
             if (repos.length === 0) { return; }
             const remoteName = item instanceof RemoteGroupItem ? item.remoteName : undefined;
             try {
-                await withProgress('Fetching (with prune)…', async () => {
-                    for (const r of repos) {
-                        // Fetch
-                        await r.fetch(remoteName ? { remote: remoteName } : { all: true });
-                        // Prune via git command
-                        if (r.git?.run) {
-                            const pruneArgs = ['remote', 'prune'];
-                            if (remoteName) {
-                                pruneArgs.push(remoteName);
-                            } else {
-                                // Prune all remotes
-                                for (const remote of r.state.remotes) {
-                                    await r.git.run(['remote', 'prune', remote.name]);
-                                }
-                                continue;
-                            }
-                            await r.git.run(pruneArgs);
-                        }
-                    }
-                });
-                // Refresh all views after fetch+prune
+                await withProgress('Fetching (with prune)…', () =>
+                    Promise.all(repos.map(r =>
+                        r.fetch(remoteName ? { remote: remoteName, prune: true } : { all: true, prune: true })
+                    )).then(() => undefined)
+                );
                 local.forceRefresh(); remote.forceRefresh(); tags.forceRefresh();
             } catch (e) { showError('Fetch failed', e); }
         }),

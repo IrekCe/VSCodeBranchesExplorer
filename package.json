@@ -208,6 +208,12 @@
                 "category": "Branches Explorer"
             },
             {
+                "command": "gitBranchesExplorer.openRemoteBranches",
+                "title": "Open Branches in Browser",
+                "icon": "$(globe)",
+                "category": "Branches Explorer"
+            },
+            {
                 "command": "gitBranchesExplorer.local.viewAsTree",
                 "title": "View as Tree",
                 "icon": "$(list-tree)",
@@ -275,6 +281,11 @@
                     "command": "gitBranchesExplorer.local.viewAsTree",
                     "when": "view == gitBranchesExplorer.local && gitBranchesExplorer.mode.local == list",
                     "group": "navigation@5"
+                },
+                {
+                    "command": "gitBranchesExplorer.openRemoteBranches",
+                    "when": "view == gitBranchesExplorer.remote",
+                    "group": "navigation@0"
                 },
                 {
                     "command": "gitBranchesExplorer.fetch",

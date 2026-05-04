@@ -55,7 +55,7 @@ export interface Repository {
     deleteBranch(name: string, force?: boolean): Promise<void>;
     merge(ref: string): Promise<void>;
     rebase(branch: string): Promise<void>;
-    fetch(options?: { remote?: string; ref?: string; all?: boolean }): Promise<void>;
+    fetch(options?: { remote?: string; ref?: string; all?: boolean; prune?: boolean; depth?: number }): Promise<void>;
     pull(unshallow?: boolean): Promise<void>;
     push(remoteName?: string, branchName?: string, setUpstream?: boolean, force?: boolean): Promise<void>;
     tag(name: string, upstream?: string): Promise<void>;
