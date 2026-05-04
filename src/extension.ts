@@ -785,9 +785,22 @@ export async function activate(context: vscode.ExtensionContext) {
             if (repos.length === 0) { return; }
             const remoteName = item instanceof RemoteGroupItem ? item.remoteName : undefined;
             try {
-                await withProgress('Fetching…', () =>
-                    Promise.all(repos.map(r => r.fetch(remoteName ? { remote: remoteName } : { all: true }))).then(() => undefined),
-                );
+                await withProgress('Fetching (with prune)…', async () => {
+                    for (const r of repos) {
+                        if (r.git?.run) {
+                            const args = ['fetch'];
+                            if (remoteName) {
+                                args.push(remoteName);
+                            } else {
+                                args.push('--all');
+                            }
+                            args.push('--prune');
+                            await r.git.run(args);
+                        } else {
+                            await r.fetch(remoteName ? { remote: remoteName } : { all: true });
+                        }
+                    }
+                });
             } catch (e) { showError('Fetch failed', e); }
         }),
 
