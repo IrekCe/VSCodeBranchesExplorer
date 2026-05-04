@@ -4,6 +4,22 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub repo](https://img.shields.io/badge/GitHub-VSCodeBranchesExplorer-blue?logo=github)](https://github.com/IrekCe/VSCodeBranchesExplorer)
 
+## Overview
+
+The intention behind this extension was to bring the **Branches / Tags** panel known from full Visual Studio directly into VS Code — while integrating it seamlessly with the native **Source Control** view rather than replacing it.
+
+**Visual Studio (full IDE) — the inspiration:**
+
+![Visual Studio Branches/Tags panel](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/VS_BranchesTags.png)
+
+The full Visual Studio IDE provides a dedicated *Branches / Tags* tree inside its Git Repository window, giving developers a structured, at-a-glance overview of all local branches, remotes and tags in one place. This extension recreates that experience inside VS Code.
+
+**Git Branches Explorer — integrated with VS Code Source Control:**
+
+![Git Branches Explorer in VS Code Source Control](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/VSC_SourceControl.png)
+
+Three dedicated sections appear directly below the native *Changes* area of the Source Control view, so all Git context stays in one panel.
+
 ## Installation
 
 Install from VS Code Extensions (search for "Git Branches Explorer") or:
@@ -16,40 +32,19 @@ code --install-extension irek-cicherski.git-branches-explorer
 
 ---
 
-Three sections in the **Source Control** view:
-
-- **Local Branches** — `refs/heads`. HEAD marked with ✓. Shows `↑ahead / ↓behind` against upstream.
-- **Remote Branches** — `refs/remotes/*`. Grouped by remote when more than one is configured.
-- **Tags** — `refs/tags`.
-
-Multi-repo workspaces show repositories as parent nodes.
-
-## Features
-
-### Overview
-![Overview](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/overview.png)
-
-Three organized sections in the Source Control view with full branch/tag management.
+## Sections
 
 ### Local Branches
-![Local Branches](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/local-branches.png)
 
-List all local branches with current branch indicator (✓). Inline action icons for checkout, delete, push, pull.
+Lists all local branches (`refs/heads`). The currently checked-out branch is marked with **✓** and shown at the top. Each row displays the short commit hash, last-commit author and a relative date (e.g. *7m ago*). For the current branch, `↑ahead / ↓behind` counts against the upstream are shown inline. Inline action icons on hover let you **checkout**, **push**, **pull**, or **delete** a branch without leaving the panel.
 
 ### Remote Branches
-![Remote Branches](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/remote-branches.png)
 
-Browse remote branches grouped by remote name. One-click checkout and merge.
-
-### Quick Switch
-![Quick Switch](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/quick-switch.png)
-
-Quick Pick for fast switching between local, remote branches and tags. Default keybinding: `Ctrl+Alt+B` (`Cmd+Alt+B` on macOS).
+Lists all remote-tracking references (`refs/remotes/*`). When more than one remote is configured, branches are automatically **grouped by remote name** — each group acts as a collapsible parent node. Each branch shows its short commit hash, author and relative date. Inline actions provide one-click **checkout** (creates a local tracking branch) and **delete on remote**. A per-group **Fetch** action is available both inline and in the context menu.
 
 ### Tags
-![Tags](https://raw.githubusercontent.com/IrekCe/VSCodeBranchesExplorer/main/docs/tags.png)
 
-Manage tags with push, delete (local/remote), and checkout.
+Lists all tags (`refs/tags`) with their short commit hash, tagger and relative date. Inline and context-menu actions cover **checkout**, **cherry-pick**, **push tag**, **delete locally** and **delete on remote**.
 
 ## Highlights
 
