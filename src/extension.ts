@@ -787,20 +787,26 @@ export async function activate(context: vscode.ExtensionContext) {
             try {
                 await withProgress('Fetching (with prune)…', async () => {
                     for (const r of repos) {
+                        // Fetch
+                        await r.fetch(remoteName ? { remote: remoteName } : { all: true });
+                        // Prune via git command
                         if (r.git?.run) {
-                            const args = ['fetch'];
+                            const pruneArgs = ['remote', 'prune'];
                             if (remoteName) {
-                                args.push(remoteName);
+                                pruneArgs.push(remoteName);
                             } else {
-                                args.push('--all');
+                                // Prune all remotes
+                                for (const remote of r.state.remotes) {
+                                    await r.git.run(['remote', 'prune', remote.name]);
+                                }
+                                continue;
                             }
-                            args.push('--prune');
-                            await r.git.run(args);
-                        } else {
-                            await r.fetch(remoteName ? { remote: remoteName } : { all: true });
+                            await r.git.run(pruneArgs);
                         }
                     }
                 });
+                // Refresh all views after fetch+prune
+                local.forceRefresh(); remote.forceRefresh(); tags.forceRefresh();
             } catch (e) { showError('Fetch failed', e); }
         }),
 
